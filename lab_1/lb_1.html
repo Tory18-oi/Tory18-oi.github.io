@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
+    <title>Платформа для пошуку роботи</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#vacancies">Вакансії</a></li>
+                <li><a href="#profile">Мій профіль</a></li>
+                <li><a href="#search">Пошук роботи</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="vacancies">
+        <h2>Вакансії</h2>
+        <div class="vacancy-container">
+            <div class="vacancy-card">
+                <h3>Менеджер проектів</h3>
+                <p><strong>Компанія:</strong> "TechCorp"</p>
+                <p><strong>Вимоги:</strong> Досвід управління проектами, комунікабельність</p>
+                <p><strong>Зарплата:</strong> 20,000 - 25,000 UAH</p>
+                <a href="#">Детальніше</a>
+            </div>
+            <div class="vacancy-card">
+                <h3>Графічний дизайнер</h3>
+                <p><strong>Компанія:</strong> "Creative Studio"</p>
+                <p><strong>Вимоги:</strong> Досвід у Photoshop та Illustrator</p>
+                <p><strong>Зарплата:</strong> 18,000 - 22,000 UAH</p>
+                <a href="#">Детальніше</a>
+            </div>
+            <div class="vacancy-card">
+                <h3>Спеціаліст з маркетингу</h3>
+                <p><strong>Компанія:</strong> "Marketing Solutions"</p>
+                <p><strong>Вимоги:</strong> Досвід у digital marketing, SEO, SMM</p>
+                <p><strong>Зарплата:</strong> 15,000 - 20,000 UAH</p>
+                <a href="#">Детальніше</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <h2>Мій профіль</h2>
+        <p>Інформація про користувачів</p>
+    </section>
+
+    <section id="search">
+        <h2>Пошук роботи</h2>
+        <form>
+            <label for="category">Категорія:</label>
+            <select id="category">
+                <option value="it">ІТ</option>
+                <option value="marketing">Маркетинг</option>
+                <option value="design">Дизайн</option>
+            </select>
+
+            <label for="region">Регіон:</label>
+            <select id="region">
+                <option value="kyiv">Київ</option>
+                <option value="lviv">Львів</option>
+                <option value="odesa">Одеса</option>
+            </select>
+
+            <label for="salary">Зарплата (від):</label>
+            <input type="number" id="salary" placeholder="Вкажіть суму">
+
+            <button type="submit">Пошук</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Платформа для пошуку роботи</p>
+    </footer>
+</body>
+</html>

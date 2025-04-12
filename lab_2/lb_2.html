@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Платформа для пошуку роботи</title>
+    
+    <script>
+        const vacancies = [
+            { title: 'Менеджер проектів', company: 'TechCorp', requirements: 'Досвід управління проектами, комунікабельність', salary: 25000, category: 'it', region: 'kyiv' },
+            { title: 'Графічний дизайнер', company: 'Creative Studio', requirements: 'Досвід у Photoshop та Illustrator', salary: 22000, category: 'design', region: 'lviv' },
+            { title: 'Спеціаліст з маркетингу', company: 'Marketing Solutions', requirements: 'Досвід у digital marketing, SEO, SMM', salary: 20000, category: 'marketing', region: 'odesa' }
+        ];
+    
+        let appliedVacancies = [];
+
+        function renderVacancies(filter = {}) {
+            const container = document.querySelector('.vacancy-container');
+            container.innerHTML = '';
+
+            const filteredVacancies = vacancies.filter(vac => {
+                return (
+                    (!filter.category || vac.category === filter.category) &&
+                    (!filter.region || vac.region === filter.region) &&
+                    (!filter.salary || vac.salary >= filter.salary)
+                );
+            });
+
+            for (let i = 0; i < filteredVacancies.length; i++) {
+        const vac = filteredVacancies[i];  // Отримуємо вакансію з масиву
+        const card = document.createElement('div');
+        card.className = 'vacancy-card';
+        const isApplied = appliedVacancies.includes(vac.title);
+        
+        // Чергування кольорів
+        card.style.backgroundColor = i % 2 === 0 ? '#f9f9f9' : '#e6e6e6';
+
+        card.innerHTML = `
+            <h3>${vac.title}</h3>
+            <p><strong>Компанія:</strong> ${vac.company}</p>
+            <p><strong>Вимоги:</strong> ${vac.requirements}</p>
+            <p><strong>Зарплата:</strong> ${vac.salary} UAH</p>
+            <p><strong>Місто:</strong> ${vac.region.charAt(0).toUpperCase() + vac.region.slice(1)}</p>
+            <button 
+                onclick="apply('${vac.title}')" 
+                ${isApplied ? 'disabled' : ''}>
+                ${isApplied ? 'Заявка подана' : 'Подати заявку'}
+            </button>
+        `;
+
+        // Ефект наведення
+        card.addEventListener('mouseover', () => {
+            card.style.transform = 'scale(1.05)';
+            card.style.transition = 'transform 0.3s ease';
+        });
+        card.addEventListener('mouseout', () => {
+            card.style.transform = 'scale(1)';
+        });
+
+        container.appendChild(card);
+    }
+}
+        function apply(title) {
+            if (appliedVacancies.includes(title)) {
+                alert(`Ви вже подали заявку на позицію '${title}'!`);
+                return;
+            }
+            appliedVacancies.push(title);
+            alert(`Заявку на позицію '${title}' успішно подано!`);
+            renderVacancies();
+        }
+
+        function filterVacancies(event) {
+            event.preventDefault();
+            const category = document.getElementById('category').value;
+            const region = document.getElementById('region').value;
+            const salary = Number(document.getElementById('salary').value);
+            renderVacancies({ category, region, salary });
+        }
+
+        function showResume() {
+            document.querySelector('#vacancies').style.display = 'none';
+            document.querySelector('#search').style.display = 'none';
+            document.querySelector('#resume').style.display = 'block';
+        }
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addComment() {
+            const text = document.getElementById('commentText').value.trim();
+            if (!text) {
+                alert('Коментар не може бути порожнім!');
+                return;
+            }
+            const commentDiv = document.createElement('div');
+            commentDiv.textContent = text;
+            commentDiv.className = 'comment-item';
+            document.getElementById('commentList').appendChild(commentDiv);
+            document.getElementById('commentText').value = '';
+        }
+
+        window.onload = () => renderVacancies();
+    </script>
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#vacancies">Вакансії</a></li>
+                <li><a href="javascript:void(0);" onclick="showResume()">Мій профіль</a></li>
+                <li><a href="#search">Пошук роботи</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="vacancies">
+        <h2>Вакансії</h2>
+        <div class="vacancy-container"></div>
+    </section>
+
+    <section id="search">
+        <h2>Пошук роботи</h2>
+        <form onsubmit="filterVacancies(event)">
+            <label for="category">Категорія:</label>
+            <select id="category">
+                <option value="">Всі</option>
+                <option value="it">ІТ</option>
+                <option value="marketing">Маркетинг</option>
+                <option value="design">Дизайн</option>
+            </select>
+    
+            <label for="region">Регіон:</label>
+            <select id="region">
+                <option value="">Всі</option>
+                <option value="kyiv">Київ</option>
+                <option value="lviv">Львів</option>
+                <option value="odesa">Одеса</option>
+            </select>
+    
+            <label for="salary">Зарплата (від):</label>
+            <input type="number" id="salary" placeholder="Вкажіть суму">
+    
+            <button type="submit">Пошук</button>
+        </form>
+    </section>
+
+    <section id="resume" style="display:none;">
+        <h2>Мій профіль</h2>
+        <div class="resume-container">
+            <h3>Ваше резюме</h3>
+            <p><strong>Ім'я:</strong> Олександр Іваненко</p>
+            <p><strong>Email:</strong> oleksandr.ivanenko@example.com</p>
+            <p><strong>Досвід роботи:</strong> 5 років у проєктному менеджменті</p>
+        </div>
+        <button onclick="window.location.hash = ''; window.location.reload();">Повернутися</button>
+    </section>
+
+    <section id="comments">
+        <h2>Додайте коментар</h2>
+        <input type="text" id="commentText" placeholder="Ваш коментар">
+        <button onclick="addComment()">Додати</button>
+        <div id="commentList"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Платформа для пошуку роботи</p>
+    </footer>
+</body>
+</html>

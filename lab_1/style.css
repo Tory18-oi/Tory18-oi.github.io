@@ -1,0 +1,180 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Вирівнює елементи по центру */
+}
+
+header nav ul li {
+    margin: 0 20px; /* Додає відступи між кнопками */
+    display: inline;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Стилі для розділів */
+section {
+    padding: 20px;
+    background-color: white;
+    margin: 20px auto;
+    border-radius: 8px;/*заокруглення кутів*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Стилі для вакансій */
+.vacancy-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.vacancy-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy-card h3 {
+    margin-top: 0;
+}
+
+.vacancy-card a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.vacancy-card a:hover {
+    text-decoration: underline;
+}
+
+/* Стилі для форми пошуку */
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+form select,
+form input,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Стилі для футера */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Медіа-запит для мобільних пристроїв (макс. ширина 768px) */
+@media (max-width: 768px) {
+    /* Одна колонка на маленьких екранах */
+    .vacancy-container {
+        grid-template-columns: 1fr; /* Одна колонка на маленьких екранах */
+    }
+
+    /* Меню стає вертикальним */
+    header nav ul {
+        flex-direction: column; /* Меню стає вертикальним */
+    }
+
+    /* Інші можливі стилі для адаптації */
+    section {
+        width: 100%; /* Повна ширина секцій на мобільних */
+        margin: 10px; /* Зменшуємо відступи на маленьких екранах */
+    }
+
+    form label {
+        font-size: 14px; /* Зменшуємо шрифт в формі на маленьких екранах */
+    }
+
+    form select,
+    form input,
+    form button {
+        padding: 8px; /* Зменшуємо відступи для форм */
+    }
+
+    /* Зменшення шрифтів для заголовків і тексту */
+    h1, h2, h3 {
+        font-size: 1.5rem; /* Зменшення розміру шрифтів для заголовків */
+    }
+
+    p {
+        font-size: 1rem; /* Оптимізація розміру шрифтів для тексту */
+    }
+
+    /* Зображення адаптивне для мобільних пристроїв */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Медіа-запит для більших екранів (від 769px і більше) */
+@media (min-width: 769px) {
+    .vacancy-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Більше колонок на більших екранах */
+    }
+
+    header nav ul {
+        flex-direction: row; /* Меню знову стає горизонтальним на більших екранах */
+    }
+
+    section {
+        width: 80%; /* Більше місця на великих екранах */
+    }
+
+    form label {
+        font-size: 16px; /* Стандартний розмір шрифта */
+    }
+
+    form select,
+    form input,
+    form button {
+        padding: 12px; /* Збільшуємо відступи для великих екранів */
+    }
+}
+
+/* Плавні переходи для елементів */
+* {
+    transition: all 0.3s ease;
+}
